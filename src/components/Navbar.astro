@@ -1,0 +1,53 @@
+---
+import { Icon } from "astro-icon/components";
+
+const navLinks = ["home", "about", "products", "team", "blog", "contact"];
+const socialLinks = [
+    {
+        name: 'mdi:facebook', color: "blue-500"
+    },
+    {
+        name: 'mdi:twitter', color: "#1da1f2"
+    },
+    {
+        name: 'mdi:google-plus', color: "#dd4b39"
+    },
+    {
+        name: 'mdi:linkedin', color: "#0077b5"
+    }
+]
+---
+
+<header class="bg-dim py-5 w-full z-10">
+    <div class="_container">
+        <div class="flex justify-between items-center">
+            <a href="" class="text-3xl font-bold">Brand<span class="text-primary">11</span></a>
+            <div class="flex">
+                <ul class="hidden lg:flex items-center gap-x-7">
+                    {
+                        navLinks.map(link =>(
+                            <li><a href={`#${link}`} class="text-lg font-semibold capitalize">{link}</a></li>
+                        ))
+                    }
+    
+                    
+                </ul>
+                <div class="flex">
+                    <ul class="ml-10 hidden sm:flex items-center gap-x-5">
+                        {
+                            socialLinks.map(icon => (
+                                <a href="/">
+                                    <Icon name={icon.name} class={`text-xl text-[${icon.color}]`} />
+                                </a>
+                            ))
+                        }
+                    </ul>
+                    <div id="sidebar-btn" class="lg:hidden flex items-center ml-10">
+                        <Icon name="mdi:menu" class="text-2xl" />
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</header>
