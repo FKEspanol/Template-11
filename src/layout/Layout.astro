@@ -1,0 +1,43 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from "../constants";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+        <meta name="description" content={SITE_DESCRIPTION} />
+        <link rel="stylesheet" href="/vendors/glightbox.min.css">
+        <link rel="stylesheet" href="/vendors/swiper-bundle.min.css">
+		<title>{SITE_TITLE}</title>
+	</head>
+	<body>
+		<slot />
+
+        <script is:inline src="/vendors/imagesloaded.pkgd.min.js"></script>
+        <script is:inline src="/vendors/glightbox.min.js"></script>
+        <script is:inline src="/vendors/isotope.pkgd.min.js"></script>
+        <script is:inline src="/vendors/swiper-bundle.min.js"></script>
+	</body>
+</html>
+
+<style is:global>
+    @font-face {
+        font-family: "Poppins";
+        src: url('/fonts/Poppins-Regular.ttf');
+    }
+
+    html {
+        font-family: "Poppins";
+        height: 100vh;
+        width: 100%;
+        background-color: #fefefe;
+    }
+
+    ._container {
+        @apply w-full sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1320px]  mx-auto px-4;
+    }
+
+</style>
