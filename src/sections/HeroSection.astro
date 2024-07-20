@@ -1,0 +1,82 @@
+---
+import Button from "../components/Button.astro";
+import heroData from "../data/heroData.json";
+---
+
+<section class="bg-dim w-full h-[900px] md:h-[540px] lg:h-[600px] xl:h-[750px] 2xl:h-screen">
+    <div class="swiper h-full">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          
+          {
+            heroData.map(data => (
+                <div class="swiper-slide h-fit my-auto">
+                    <div class="_container">
+                        <div class="grid grid-cols-2 gap-7 items-center">
+                            <div class="col-span-2 md:col-span-1">
+                                <h1 class="text-[35px] md:text-[40px] lg:text-[45px] xl:text-[56px] font-bold mb-8 leading-snug">{data.title}</h1>
+                                <p class="text-base xl:text-xl text-smoke leading-relaxed mb-8"> 
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam illum alias ut dolore non culpa quas delectus voluptate esse natus!
+                                </p>
+                                <Button>Get Started</Button>
+                            </div>
+                            <div class="col-span-2 md:col-span-1">
+                                <div class="h-full ">
+                                    <img src={`/images/${data.image}`} alt={data.image} class="relative -mr-24" loading="lazy" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))
+          }
+          ...
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+      
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev ml-10"></div>
+        <div class="swiper-button-next mr-10"></div>
+      
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+      </div>
+      
+</section>
+
+<script is:inline type="module">
+    new Swiper(".swiper", {
+        // Optional parameters
+        speed: 600,
+        
+        loop: true,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+
+        navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+        
+
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+
+        // If we need pagination
+        // pagination: {
+        //     el: ".swiper-pagination",
+        //     clickable: true,
+        //     bulletActiveClass: "swiper-pagination-bullet-active bg-primary",
+        // },
+    });
+
+    // GLightbox({
+    //     selector: ".gallery-lightbox",
+    // });
+</script>
