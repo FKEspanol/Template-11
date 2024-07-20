@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 const navLinks = ["home", "about", "products", "team", "blog", "contact"];
 const socialLinks = [
     {
-        name: 'mdi:facebook', color: "blue-500"
+        name: 'ri:facebook-fill', color: "#3b5998"
     },
     {
         name: 'mdi:twitter', color: "#1da1f2"
@@ -21,19 +21,19 @@ const socialLinks = [
 <header class="bg-dim py-5 w-full z-10">
     <div class="_container">
         <div class="flex justify-between items-center">
-            <a href="" class="text-3xl font-bold">Brand<span class="text-primary">11</span></a>
+            <a href="" class="text-2xl font-bold">Brand<span class="text-primary">Name</span></a>
             <div class="flex">
                 <ul class="hidden lg:flex items-center gap-x-7">
                     {
                         navLinks.map(link =>(
-                            <li><a href={`#${link}`} class="text-lg font-semibold capitalize">{link}</a></li>
+                            <li><a href={`#${link}`} class="font-semibold capitalize">{link}</a></li>
                         ))
                     }
     
                     
                 </ul>
                 <div class="flex">
-                    <ul class="ml-10 hidden sm:flex items-center gap-x-5">
+                    <ul class="ml-10 hidden sm:flex items-center gap-x-4">
                         {
                             socialLinks.map(icon => (
                                 <a href="/">
@@ -43,7 +43,7 @@ const socialLinks = [
                         }
                     </ul>
                     <div id="sidebar-btn" class="lg:hidden flex items-center ml-10">
-                        <Icon name="mdi:menu" class="text-2xl" />
+                        <Icon name="mdi:menu" class="text-3xl" />
                     </div>
                 </div>
             </div>
@@ -51,3 +51,60 @@ const socialLinks = [
         </div>
     </div>
 </header>
+<div
+    id="sidebar"
+    class="fixed -right-[400px] top-0 bottom-0 min-h-screen max-w-[400px] w-full z-[12] transition-all duration-500 bg-dim"
+>
+    <div id="sidebar-close-btn" class="py-10 pl-8 transition-all duration-300">
+        <Icon name="mdi:window-close" class="text-3xl" />
+    </div>
+    <ul>
+        {
+            navLinks.map((link) => (
+                <li>
+                    <a
+                        href={`#${link}`}
+                        class="nav-link block py-3 pl-8 transition-all duration-200 text-sm hover:bg-secondary uppercase"
+                    >
+                        {link}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<script is:inline>
+    // Open and close sidebar on smaller screen
+    const sidebarBtn = document.getElementById("sidebar-btn");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
+
+    sidebarBtn.onclick = () => {
+        sidebar.classList.remove("-right-[400px]");
+        sidebar.classList.add("right-0");
+    };
+
+    sidebarCloseBtn.onclick = () => {
+        sidebar.classList.remove("right-0");
+        sidebar.classList.add("-right-[400px]");
+    };
+
+    // scroll to section
+    const headerNavbar = document.getElementById("header-navbar");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const sectionID = link.getAttribute("href").replace("#", "");
+            console.log(sectionID);
+            window.scrollTo({
+                top:
+                    document.getElementById(sectionID).offsetTop -
+                    headerNavbar.offsetHeight,
+                behavior: "smooth",
+            });
+        });
+    });
+</script>
